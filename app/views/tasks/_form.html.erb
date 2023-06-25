@@ -23,15 +23,13 @@
 
   <div>
     <%= form.label :state, style: "display: block" %>
-    <%= form.number_field :state %>
+    <%= form.select :state, Task.states.keys.to_a%>
   </div>
 
-  <!--
   <div>
     <%= form.label :due_at, style: "display: block" %>
     <%= form.datetime_field :due_at %>
   </div>
-  -->
 
   <div>
     <%= form.submit %>
