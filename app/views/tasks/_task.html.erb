@@ -1,0 +1,15 @@
+<div id="<%= dom_id task %>">
+  <p>
+    <strong>Title</strong>
+    <%=link_to task.title, task %>
+    <br>
+      <%= task.description %>
+    </br>
+  </p>
+
+  <p>
+    <strong>State:</strong>
+    <%= task.state %>
+  </p>
+
+</div>
