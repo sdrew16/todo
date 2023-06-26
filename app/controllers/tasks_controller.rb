@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.active
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -49,11 +49,12 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
-    @task.destroy
-
+    @task.deleted_at = Time.now
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
-      format.json { head :no_content }
+      if @task.save
+        format.html { redirect_to tasks_url, notice: "Task was successfully archived." }
+        format.json { render :show, status: :created, location: @task }
+      end
     end
   end
 
